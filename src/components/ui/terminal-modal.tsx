@@ -60,6 +60,8 @@ const INITIAL_LOG: LogLine = {
   text: 'Welcome to KWAQ OS v1.0.0. Type "help" for a list of available commands.'
 };
 
+let globalAudio: HTMLAudioElement | null = null;
+
 export function TerminalModal({ open, onClose }: TerminalModalProps) {
   const [logs, setLogs] = useState<LogLine[]>([INITIAL_LOG]);
   const [input, setInput] = useState("");
@@ -113,9 +115,17 @@ export function TerminalModal({ open, onClose }: TerminalModalProps) {
       setTimeout(() => window.open("https://chromedino.com/", "_blank"), 1000);
     } else if (lowerCmd === "music") {
       if (isMusicPlaying) {
+        if (globalAudio) {
+          globalAudio.pause();
+        }
         setIsMusicPlaying(false);
         output = "Stopping Lofi radio...";
       } else {
+        if (!globalAudio) {
+          globalAudio = new Audio("https://stream.zeno.fm/f3wvbbqmdg8uv");
+          globalAudio.volume = 0.5;
+        }
+        globalAudio.play().catch(e => console.error("Audio playback failed:", e));
         setIsMusicPlaying(true);
         output = "Playing Lofi radio in the background... (Type 'music' again to stop)";
       }
@@ -192,16 +202,6 @@ export function TerminalModal({ open, onClose }: TerminalModalProps) {
           >
             {/* Terminal Header */}
             <div className="flex items-center justify-between px-4 py-3 bg-secondary/50 border-b border-white/10 relative">
-              {isMusicPlaying && (
-                <iframe
-                  width="2"
-                  height="2"
-                  src="https://www.youtube.com/embed/l-vSSYEuO88?autoplay=1&enablejsapi=1"
-                  frameBorder="0"
-                  allow="autoplay; encrypted-media"
-                  className="absolute opacity-0 pointer-events-none"
-                ></iframe>
-              )}
               <div className="flex gap-2">
                 <button onClick={onClose} className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 transition-colors" />
                 <button className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-600 transition-colors" />
