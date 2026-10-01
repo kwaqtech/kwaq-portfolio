@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Search, TerminalSquare, Menu } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { TerminalModal } from "@/components/ui/terminal-modal";
 
 const NAV_LINKS = [
@@ -175,9 +175,8 @@ export function Header() {
                     key={link.name}
                     href={link.href}
                     onClick={(e) => handleNav(e, link.href, link.section)}
-                    className={`px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-                      isActive ? "bg-white/10 text-foreground" : "text-muted-foreground hover:bg-white/5 hover:text-foreground"
-                    }`}
+                    className={`px-4 py-3 rounded-lg text-sm font-medium transition-colors ${isActive ? "bg-white/10 text-foreground" : "text-muted-foreground hover:bg-white/5 hover:text-foreground"
+                      }`}
                   >
                     {link.name}
                   </Link>
