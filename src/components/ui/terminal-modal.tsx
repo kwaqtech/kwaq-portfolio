@@ -60,8 +60,6 @@ const INITIAL_LOG: LogLine = {
   text: 'Welcome to KWAQ OS v1.0.0. Type "help" for a list of available commands.'
 };
 
-let globalAudio: HTMLAudioElement | null = null;
-
 export function TerminalModal({ open, onClose }: TerminalModalProps) {
   const [logs, setLogs] = useState<LogLine[]>([INITIAL_LOG]);
   const [input, setInput] = useState("");
@@ -115,17 +113,9 @@ export function TerminalModal({ open, onClose }: TerminalModalProps) {
       setTimeout(() => window.open("https://chromedino.com/", "_blank"), 1000);
     } else if (lowerCmd === "music") {
       if (isMusicPlaying) {
-        if (globalAudio) {
-          globalAudio.pause();
-        }
         setIsMusicPlaying(false);
         output = "Stopping Lofi radio...";
       } else {
-        if (!globalAudio) {
-          globalAudio = new Audio("https://stream.zeno.fm/f3wvbbqmdg8uv");
-          globalAudio.volume = 0.5;
-        }
-        globalAudio.play().catch(e => console.error("Audio playback failed:", e));
         setIsMusicPlaying(true);
         output = "Playing Lofi radio in the background... (Type 'music' again to stop)";
       }
@@ -184,8 +174,20 @@ export function TerminalModal({ open, onClose }: TerminalModalProps) {
   };
 
   return (
-    <AnimatePresence>
-      {open && (
+    <>
+      {isMusicPlaying && (
+        <iframe
+          width="2"
+          height="2"
+          src="https://www.youtube.com/embed/l-vSSYEuO88?si=sFZgCZZmrPa4uHEi&autoplay=1"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          className="fixed -top-10 -left-10 opacity-0 pointer-events-none"
+        />
+      )}
+      <AnimatePresence>
+        {open && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -250,5 +252,6 @@ export function TerminalModal({ open, onClose }: TerminalModalProps) {
         </motion.div>
       )}
     </AnimatePresence>
+    </>
   );
 }
