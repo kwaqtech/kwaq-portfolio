@@ -6,7 +6,7 @@ import { README_CONTENT } from "@/data/cv";
 export function Readme() {
   const handleDownload = () => {
     const a = document.createElement('a');
-    a.href = "/CaoMinhQuangCV.pdf";
+    a.href = "CaoMinhQuangCV.pdf";
     a.download = "CaoMinhQuangCV.pdf";
     a.target = "_blank";
     document.body.appendChild(a);
