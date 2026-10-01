@@ -7,21 +7,7 @@ import { motion } from "framer-motion";
 
 export function Projects() {
   return (
-    <section className="py-12" id="projects">
-      <div className="flex flex-col gap-12">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="flex flex-col gap-4"
-        >
-          <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-foreground">Projects</h2>
-          <p className="text-muted-foreground text-sm max-w-lg">
-            A selection of projects I&apos;ve worked on, ranging from full-stack platforms to backend infrastructure.
-          </p>
-        </motion.div>
-
+    <div className="flex flex-col gap-12">
         <div className="flex flex-col border-t border-white/5">
           {PROJECTS.map((project, index) => (
             <motion.div
@@ -33,7 +19,7 @@ export function Projects() {
             >
               <Link
                 href={`/projects/${project.slug}`}
-                className="group relative flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-8 border-b border-white/5 transition-colors hover:bg-white/[0.02] -mx-4 px-4 sm:-mx-8 sm:px-8 rounded-2xl"
+                className="group relative flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-8 border-b border-white/5 transition-colors hover:bg-white/[0.02] -mx-4 px-4 md:-mx-8 md:px-8 rounded-2xl"
               >
                 <div className="flex flex-col sm:flex-row sm:items-baseline gap-4 sm:gap-12 w-full max-w-3xl">
                   <span className="text-xs font-mono text-muted-foreground font-medium shrink-0 w-8">
@@ -71,7 +57,6 @@ export function Projects() {
           ))}
         </div>
       </div>
-    </section>
   );
 }
 

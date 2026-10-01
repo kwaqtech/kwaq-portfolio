@@ -2,12 +2,7 @@ import { SKILLS_DATA } from "@/data/skills";
 
 export function Skills() {
   return (
-    <section className="py-12" id="engineering">
-      <div className="flex flex-col gap-12">
-        <div className="flex flex-col gap-4">
-          <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-foreground">Engineering</h2>
-        </div>
-
+    <div className="flex flex-col gap-12">
         <div className="flex flex-col gap-6">
           {SKILLS_DATA.map((category) => (
             <div 
@@ -24,6 +19,5 @@ export function Skills() {
           ))}
         </div>
       </div>
-    </section>
   );
 }

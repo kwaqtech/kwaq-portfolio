@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 
 export function Hero() {
   return (
-    <section className="pt-12 pb-8 flex flex-col gap-6">
-      <motion.div 
+    <section className="flex flex-col gap-6">
+      <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
@@ -29,17 +29,17 @@ export function Hero() {
         </div>
       </motion.div>
 
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
         className="text-base text-muted-foreground leading-relaxed max-w-2xl"
       >
-        I build practical software products across backend systems, full-stack applications, and product engineering. 
+        I build practical software products across backend systems, full-stack applications, and product engineering.
         Currently focused on crafting resilient architectures and refined user interfaces.
       </motion.div>
 
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
@@ -54,7 +54,7 @@ export function Hero() {
         <a href={`mailto:${IDENTITY.email}`} className="text-muted-foreground hover:text-foreground transition-colors" aria-label="Email">
           Email
         </a>
-        <a href="#cv" className="flex items-center gap-2 text-sm font-medium text-foreground bg-white/5 border border-white/10 hover:bg-white/10 transition-colors px-3 py-1.5 rounded-md ml-2">
+        <a href="#cv" className="flex items-center gap-2 text-sm font-medium text-foreground bg-white/5 border border-white/10 hover:bg-white/10 transition-colors px-4 py-2 rounded-md ml-2">
           Resume
         </a>
       </motion.div>

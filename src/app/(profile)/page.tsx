@@ -74,15 +74,51 @@ export default function OverviewPage() {
         <Philosophy />
       </section>
 
-      <section id="projects" className="scroll-mt-24">
+      <section id="projects" className="scroll-mt-24 flex flex-col gap-12">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="flex flex-col gap-4"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
+            <TextScramble text="Projects" />
+          </h2>
+          <p className="text-sm text-muted-foreground max-w-lg">
+            A selection of projects I&apos;ve worked on, ranging from full-stack platforms to backend infrastructure.
+          </p>
+        </motion.div>
         <Projects />
       </section>
 
-      <section id="experience" className="scroll-mt-24">
+      <section id="experience" className="scroll-mt-24 flex flex-col gap-12">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="flex flex-col gap-4"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
+            <TextScramble text="Experience" />
+          </h2>
+        </motion.div>
         <Experience />
       </section>
 
-      <section id="skills" className="scroll-mt-24">
+      <section id="skills" className="scroll-mt-24 flex flex-col gap-12">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="flex flex-col gap-4"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
+            <TextScramble text="Engineering" />
+          </h2>
+        </motion.div>
         <Skills />
       </section>
 
@@ -111,7 +147,7 @@ export default function OverviewPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
-              className="group flex flex-col md:flex-row md:items-baseline justify-between gap-4 py-6 border-b border-white/5 hover:bg-white/[0.02] -mx-4 px-4 sm:-mx-8 sm:px-8 rounded-xl transition-colors"
+              className="group flex flex-col md:flex-row md:items-baseline justify-between gap-4 py-6 border-b border-white/5 hover:bg-white/[0.02] -mx-4 px-4 md:-mx-8 md:px-8 rounded-xl transition-colors"
             >
               <div className="flex flex-col gap-1.5 flex-1">
                 <h3 className="text-base font-bold text-foreground group-hover:text-accent transition-colors duration-300">

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Search, TerminalSquare } from "lucide-react";
+import { Search, TerminalSquare, Menu } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
@@ -21,6 +21,7 @@ export function Header() {
   const router = useRouter();
   const [activeSection, setActiveSection] = useState("");
   const [isTerminalOpen, setTerminalOpen] = useState(false);
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isManualScrolling = useRef(false);
   const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
 
@@ -74,6 +75,7 @@ export function Header() {
         // Remove hash from URL without reloading
         window.history.pushState(null, "", window.location.pathname);
       }
+      setMobileMenuOpen(false);
     }
   };
 
@@ -146,8 +148,44 @@ export function Header() {
             >
               <Search className="h-4 w-4" />
             </button>
+            <button
+              onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
+              className="flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors w-8 h-8 rounded-md hover:bg-white/5"
+              aria-label="Toggle Menu"
+            >
+              <Menu className="h-4 w-4" />
+            </button>
           </div>
         </div>
+
+        {/* Mobile Navigation Dropdown */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+              className="absolute top-16 left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-white/5 shadow-2xl p-4 flex flex-col gap-2 md:hidden"
+            >
+              {NAV_LINKS.map((link) => {
+                const isActive = activeSection === link.section;
+                return (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    onClick={(e) => handleNav(e, link.href, link.section)}
+                    className={`px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                      isActive ? "bg-white/10 text-foreground" : "text-muted-foreground hover:bg-white/5 hover:text-foreground"
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                );
+              })}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
       <TerminalModal open={isTerminalOpen} onClose={() => setTerminalOpen(false)} />

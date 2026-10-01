@@ -5,18 +5,7 @@ import { motion } from "framer-motion";
 
 export function Experience() {
   return (
-    <section className="py-12" id="experience">
-      <div className="flex flex-col gap-12">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="flex flex-col gap-4"
-        >
-          <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-foreground">Experience</h2>
-        </motion.div>
-
+    <div className="flex flex-col gap-12">
         <div className="flex flex-col border-t border-white/5">
           {EXPERIENCE_HISTORY.map((exp, index) => (
             <motion.div 
@@ -48,6 +37,5 @@ export function Experience() {
           ))}
         </div>
       </div>
-    </section>
   );
 }
