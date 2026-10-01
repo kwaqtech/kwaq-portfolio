@@ -54,7 +54,7 @@ export function Hero() {
         <a href={`mailto:${IDENTITY.email}`} className="text-muted-foreground hover:text-foreground transition-colors" aria-label="Email">
           Email
         </a>
-        <a href="/#cv" className="flex items-center gap-2 text-sm font-medium text-foreground bg-white/5 border border-white/10 hover:bg-white/10 transition-colors px-3 py-1.5 rounded-md ml-2">
+        <a href="#cv" className="flex items-center gap-2 text-sm font-medium text-foreground bg-white/5 border border-white/10 hover:bg-white/10 transition-colors px-3 py-1.5 rounded-md ml-2">
           Resume
         </a>
       </motion.div>
