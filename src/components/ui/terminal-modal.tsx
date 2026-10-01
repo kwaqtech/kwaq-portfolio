@@ -123,7 +123,7 @@ export function TerminalModal({ open, onClose }: TerminalModalProps) {
       output = "Extracting Curriculum Vitae... Downloading.";
       setTimeout(() => {
         const a = document.createElement('a');
-        a.href = "/CaoMinhQuangCV.pdf";
+        a.href = "CaoMinhQuangCV.pdf";
         a.download = "CaoMinhQuangCV.pdf";
         a.target = "_blank";
         document.body.appendChild(a);
