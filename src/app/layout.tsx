@@ -6,6 +6,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CommandMenu } from "@/components/cmdk/CommandMenu";
 import { BackgroundEffects } from "@/components/ui/background-effects";
+import { BootSequence } from "@/components/ui/BootSequence";
 
 const sans = Outfit({
   subsets: ["latin"],
@@ -53,6 +54,7 @@ export default function RootLayout({
       className="dark h-full antialiased"
     >
       <body className={`min-h-[100dvh] flex flex-col font-sans ${sans.variable} ${mono.variable} bg-background text-foreground selection:bg-accent/30 selection:text-accent-foreground`}>
+        <BootSequence />
         <BackgroundEffects />
         <Header />
         <div className="flex-1">

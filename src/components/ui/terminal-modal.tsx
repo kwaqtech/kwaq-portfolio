@@ -104,6 +104,10 @@ export function TerminalModal({ open, onClose }: TerminalModalProps) {
     } else if (lowerCmd === "snake") {
       output = "Initializing Snake protocol... Opening in external container.";
       setTimeout(() => window.open("https://playsnake.org/", "_blank"), 1000);
+    } else if (lowerCmd === "matrix") {
+      document.documentElement.classList.remove("light", "dark");
+      document.documentElement.classList.add("hacker");
+      output = "Entering the matrix... Hacker theme activated.";
     } else if (lowerCmd === "dino") {
       output = "Network disconnect simulated. Launching T-Rex runner...";
       setTimeout(() => window.open("https://chromedino.com/", "_blank"), 1000);
@@ -190,12 +194,12 @@ export function TerminalModal({ open, onClose }: TerminalModalProps) {
             <div className="flex items-center justify-between px-4 py-3 bg-secondary/50 border-b border-white/10 relative">
               {isMusicPlaying && (
                 <iframe
-                  width="0"
-                  height="0"
-                  src="https://www.youtube.com/embed/l-vSSYEuO88?autoplay=1&list=RDl-vSSYEuO88&start=67"
+                  width="2"
+                  height="2"
+                  src="https://www.youtube.com/embed/l-vSSYEuO88?autoplay=1&enablejsapi=1"
                   frameBorder="0"
-                  allow="autoplay"
-                  className="absolute hidden"
+                  allow="autoplay; encrypted-media"
+                  className="absolute opacity-0 pointer-events-none"
                 ></iframe>
               )}
               <div className="flex gap-2">

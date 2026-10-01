@@ -68,10 +68,11 @@ export function Header() {
       const element = document.getElementById(section);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
-        window.history.pushState(null, "", href);
+        window.location.hash = section;
       } else if (href === "/") {
         window.scrollTo({ top: 0, behavior: "smooth" });
-        window.history.pushState(null, "", "/");
+        // Remove hash from URL without reloading
+        window.history.pushState(null, "", window.location.pathname);
       }
     }
   };
