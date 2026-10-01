@@ -188,70 +188,70 @@ export function TerminalModal({ open, onClose }: TerminalModalProps) {
       )}
       <AnimatePresence>
         {open && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-background/80 backdrop-blur-sm p-4"
-          onClick={onClose}
-        >
           <motion.div
-            initial={{ scale: 0.95, opacity: 0, y: 20 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.95, opacity: 0, y: 20 }}
-            className="w-full max-w-2xl bg-card/70 backdrop-blur-2xl border border-white/10 rounded-xl overflow-hidden shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] font-mono text-sm"
-            onClick={(e) => e.stopPropagation()}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-background/80 backdrop-blur-sm p-4"
+            onClick={onClose}
           >
-            {/* Terminal Header */}
-            <div className="flex items-center justify-between px-4 py-3 bg-secondary/50 border-b border-white/10 relative">
-              <div className="flex gap-2">
-                <button onClick={onClose} className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 transition-colors" />
-                <button className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-600 transition-colors" />
-                <button className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600 transition-colors" />
-              </div>
-              <div className="text-xs font-medium text-muted-foreground">quang@kwaq-os: ~</div>
-              <div className="w-12" /> {/* Spacer for centering */}
-            </div>
-
-            {/* Terminal Body */}
-            <div
-              className="p-4 h-[400px] overflow-y-auto flex flex-col gap-2 text-foreground"
-              onClick={() => inputRef.current?.focus()}
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              className="w-full max-w-2xl bg-card/70 backdrop-blur-2xl border border-white/10 rounded-xl overflow-hidden shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] font-mono text-sm"
+              onClick={(e) => e.stopPropagation()}
             >
-              {logs.map((log) => (
-                <div key={log.id} className="flex flex-col">
-                  {log.type === "input" ? (
-                    <div className="flex items-start gap-2">
-                      <span className="text-accent shrink-0">quang@kwaq-os:~$</span>
-                      <span>{log.text}</span>
-                    </div>
-                  ) : (
-                    <div className={`whitespace-pre-wrap ${log.type === "system" ? "text-muted-foreground" : "text-foreground"}`}>
-                      {log.id === "init" ? log.text : <TypewriterText text={log.text} />}
-                    </div>
-                  )}
+              {/* Terminal Header */}
+              <div className="flex items-center justify-between px-4 py-3 bg-secondary/50 border-b border-white/10 relative">
+                <div className="flex gap-2">
+                  <button onClick={onClose} className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 transition-colors" />
+                  <button className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-600 transition-colors" />
+                  <button className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600 transition-colors" />
                 </div>
-              ))}
-
-              <div className="flex items-center gap-2 mt-2">
-                <span className="text-accent shrink-0">quang@kwaq-os:~$</span>
-                <input
-                  ref={inputRef}
-                  type="text"
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  className="flex-1 bg-transparent border-none outline-none text-foreground caret-foreground"
-                  spellCheck={false}
-                  autoComplete="off"
-                />
+                <div className="text-xs font-medium text-muted-foreground">quang@kwaq-os: ~</div>
+                <div className="w-12" /> {/* Spacer for centering */}
               </div>
-              <div ref={bottomRef} />
-            </div>
+
+              {/* Terminal Body */}
+              <div
+                className="p-4 h-[400px] overflow-y-auto flex flex-col gap-2 text-foreground"
+                onClick={() => inputRef.current?.focus()}
+              >
+                {logs.map((log) => (
+                  <div key={log.id} className="flex flex-col">
+                    {log.type === "input" ? (
+                      <div className="flex items-start gap-2">
+                        <span className="text-accent shrink-0">quang@kwaq-os:~$</span>
+                        <span>{log.text}</span>
+                      </div>
+                    ) : (
+                      <div className={`whitespace-pre-wrap ${log.type === "system" ? "text-muted-foreground" : "text-foreground"}`}>
+                        {log.id === "init" ? log.text : <TypewriterText text={log.text} />}
+                      </div>
+                    )}
+                  </div>
+                ))}
+
+                <div className="flex items-center gap-2 mt-2">
+                  <span className="text-accent shrink-0">quang@kwaq-os:~$</span>
+                  <input
+                    ref={inputRef}
+                    type="text"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    className="flex-1 bg-transparent border-none outline-none text-foreground caret-foreground"
+                    spellCheck={false}
+                    autoComplete="off"
+                  />
+                </div>
+                <div ref={bottomRef} />
+              </div>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+        )}
+      </AnimatePresence>
     </>
   );
 }
